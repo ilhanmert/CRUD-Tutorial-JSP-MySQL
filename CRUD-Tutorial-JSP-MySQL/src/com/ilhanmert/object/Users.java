@@ -16,6 +16,14 @@ public class Users
 		this.password=password;
 		this.email=email;
 	}
+	public Users (String name, String surname, String username, String password, String email)
+	{
+		this.name=name;
+		this.surname=surname;
+		this.username=username;
+		this.password=password;
+		this.email=email;
+	}
 	public int getId() {
 		return id;
 	}

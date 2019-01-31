@@ -23,7 +23,7 @@ public class UsersDAO
 	{
 		try
 		{
-			cs=con.prepareCall ("{ CALL AkademisyenEkle ( ?, ?, ?, ?, ? )}");
+			cs=con.prepareCall ("{ CALL createUser ( ?, ?, ?, ?, ? )}");
 			cs.setString(1, user.getName());
 			cs.setString(2, user.getSurname());
 			cs.setString(3, user.getUsername());
@@ -39,8 +39,9 @@ public class UsersDAO
 	{
 		try
 		{
-			String query = "CALL GetAllUsers()";
+			String query = "CALL getUsers()";
 			resultSet=stm.executeQuery(query);
+			
 		}
 		catch (Exception e) { System.out.println("Hata:"+e.getMessage()); System.exit(0);}
 		return resultSet;
@@ -50,7 +51,7 @@ public class UsersDAO
 	{
 		try
 		{
-			cs=con.prepareCall ("{ CALL AkademisyenGuncelle ( ?, ?, ?, ?, ?, ?, ?,? )}");
+			cs=con.prepareCall ("{ CALL updateUser ( ?, ?, ?, ?, ?, ?)}");
 			cs.setInt(1, id);
 			cs.setString(2, user.getName());
 			cs.setString(3, user.getSurname());
@@ -67,7 +68,7 @@ public class UsersDAO
 	{
 		try
 		{
-			cs=con.prepareCall ("{ CALL DeleteUser( ?)}");
+			cs=con.prepareCall ("{ CALL deleteUsers( ?)}");
 			cs.setInt(1, id);
 			cs.execute();
 			return true;
