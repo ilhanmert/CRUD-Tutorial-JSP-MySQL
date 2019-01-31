@@ -2,15 +2,14 @@ package com.ilhanmert.dao;
 import com.ilhanmert.object.*;
 import java.sql.*;
 import com.ilhanmert.database.ConnectDatabase;
-
 public class UsersDAO 
 {
-	private Connection con;
-	private String driver=ConnectDatabase.getDriver();
-	private String url=ConnectDatabase.getUrl(); 
-	private Statement stm;
-	private ResultSet resultSet = null;
-	private CallableStatement cs;
+	private Connection con; //Baðlantýyý saðlar
+	private String driver=ConnectDatabase.getDriver(); //Databaseden driveri aldýk
+	private String url=ConnectDatabase.getUrl(); //Databaseden urlyi aldýk
+	private Statement stm; // SQL ifadeleri veritabanýna göndermek için kullanýlýr
+	private ResultSet resultSet = null; // Veritabanýndan alýnan nesneleri tutmaya ve taþýmaya yarar
+	private CallableStatement cs; //Saklý yordamlarý çaðýrmayý saðlar
 	
 	public UsersDAO()
 	{
@@ -23,7 +22,7 @@ public class UsersDAO
 	{
 		try
 		{
-			cs=con.prepareCall ("{ CALL createUser ( ?, ?, ?, ?, ? )}");
+			cs=con.prepareCall ("{ CALL createUser ( ?, ?, ?, ?, ? )}"); 
 			cs.setString(1, user.getName());
 			cs.setString(2, user.getSurname());
 			cs.setString(3, user.getUsername());
@@ -32,7 +31,7 @@ public class UsersDAO
 			cs.execute();
 			return true;
 		}
-		catch (Exception e) { System.out.println("Hata:"+e.getMessage()); System.exit(0); return false;}
+		catch (Exception e) { System.out.println("Hata:"+e.getMessage()); System.exit(0); return false;} //Hata halinde mesajý ekrana bastýrýp false döndürdük
 	}
 	
 	public ResultSet getUsers()
